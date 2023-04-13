@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['SHOES_STORE_API_USER'] %>
+  password: <%= ENV['SHOES_STORE_API_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: <%= ENV.fetch("RAILS_TIMEOUT") { 5000 } %>
+  host: <%= ENV['SHOES_STORE_API_HOST'] %>
+development:
+  <<: *default
+  database: <%= ENV['SHOES_STORE_API_DB'] %>
+test:
+  <<: *default
+  database: <%= ENV['SHOES_STORE_API_TEST_DB'] %>
+production:
+  <<: *default
+  database: <%= ENV['SHOES_STORE_API_DB'] %>
